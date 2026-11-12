@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+ xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides"
+ xsi:type="MailApp">
+ <Id>6bfa6425-d115-4b2b-a371-6ce392ae19d0</Id>
+ <Version>1.0.0.0</Version>
+ <ProviderName>Personal Recipient Intro</ProviderName>
+ <DefaultLocale>en-US</DefaultLocale>
+ <DisplayName DefaultValue="Recipient Intro"/>
+ <Description DefaultValue="Adds a custom opening text for selected recipients when composing mail."/>
+ <IconUrl DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/assets/icon64.png"/>
+ <HighResolutionIconUrl DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/assets/icon128.png"/>
+ <SupportUrl DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/"/>
+ <AppDomains><AppDomain>https://YOURUSERNAME.github.io</AppDomain></AppDomains>
+ <Hosts><Host Name="Mailbox"/></Hosts>
+ <Requirements><Sets DefaultMinVersion="1.1"><Set Name="Mailbox"/></Sets></Requirements>
+ <FormSettings><Form xsi:type="ItemRead"><DesktopSettings><SourceLocation DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/index.html"/><RequestedHeight>250</RequestedHeight></DesktopSettings></Form></FormSettings>
+ <Permissions>ReadWriteItem</Permissions>
+ <Rule xsi:type="RuleCollection" Mode="Or"><Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/></Rule>
+ <DisableEntityHighlighting>true</DisableEntityHighlighting>
+ <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+   <Description resid="residAppDesc"/>
+   <Requirements><bt:Sets DefaultMinVersion="1.11"><bt:Set Name="Mailbox"/></bt:Sets></Requirements>
+   <Hosts><Host xsi:type="MailHost">
+    <Runtimes><Runtime resid="Autorun"><Override type="javascript" resid="RuntimeJS"/></Runtime></Runtimes>
+    <DesktopFormFactor>
+     <ExtensionPoint xsi:type="MessageComposeCommandSurface"><OfficeTab id="TabDefault"><Group id="introGroup">
+      <Label resid="groupLabel"/>
+      <Control xsi:type="Button" id="introHelp"><Label resid="buttonLabel"/>
+       <Supertip><Title resid="buttonLabel"/><Description resid="buttonTip"/></Supertip>
+       <Icon><bt:Image size="16" resid="icon16"/><bt:Image size="32" resid="icon32"/><bt:Image size="80" resid="icon80"/></Icon>
+       <Action xsi:type="ShowTaskpane"><SourceLocation resid="HelpPage"/></Action>
+      </Control>
+     </Group></OfficeTab></ExtensionPoint>
+     <ExtensionPoint xsi:type="LaunchEvent"><LaunchEvents>
+      <LaunchEvent Type="OnMessageRecipientsChanged" FunctionName="onRecipientsChanged"/>
+     </LaunchEvents><SourceLocation resid="Autorun"/></ExtensionPoint>
+    </DesktopFormFactor>
+   </Host></Hosts>
+   <Resources>
+    <bt:Images><bt:Image id="icon16" DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/assets/icon16.png"/>
+     <bt:Image id="icon32" DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/assets/icon32.png"/>
+     <bt:Image id="icon80" DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/assets/icon80.png"/></bt:Images>
+    <bt:Urls>
+     <bt:Url id="HelpPage" DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/index.html"/>
+     <bt:Url id="Autorun" DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/runtime.html"/>
+     <bt:Url id="RuntimeJS" DefaultValue="https://YOURUSERNAME.github.io/outlook-recipient-intro/handlers.js"/>
+    </bt:Urls>
+    <bt:ShortStrings><bt:String id="groupLabel" DefaultValue="Recipient Intro"/>
+     <bt:String id="buttonLabel" DefaultValue="About Recipient Intro"/></bt:ShortStrings>
+    <bt:LongStrings><bt:String id="residAppDesc" DefaultValue="Automatically insert a custom beginning for a recipient in the To field."/>
+     <bt:String id="buttonTip" DefaultValue="Shows information about this add-in."/></bt:LongStrings>
+   </Resources>
+  </VersionOverrides>
+ </VersionOverrides>
+</OfficeApp>
